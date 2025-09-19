@@ -1,104 +1,83 @@
-/* CSS Variables for Theme Management */
+/* Base resets and typography shared across the app, aligned with Soft Mono */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  /* Soft Mono palette */
+  --color-primary: #6B7280;
+  --color-secondary: #9CA3AF;
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --color-bg: #F9FAFB;
+  --color-surface: #FFFFFF;
+  --color-text: #111827;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.04);
+  --shadow-md: 0 6px 14px rgba(17, 24, 39, 0.08);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  --border: 1px solid rgba(17, 24, 39, 0.08);
 }
 
 [data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+  --color-bg: #0f1115;
+  --color-surface: #151821;
+  --color-text: #e5e7eb;
+  --color-primary: #9CA3AF;
+  --color-secondary: #6B7280;
+  --border: 1px solid rgba(229, 231, 235, 0.08);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 6px 14px rgba(0,0,0,0.4);
 }
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+/* Utility classes */
+.text-muted { color: var(--color-secondary); }
+.badge { padding: 2px 8px; border-radius: 999px; font-size: 12px; }
+.badge.success { background: rgba(16,185,129,0.12); color: var(--color-success); }
+.badge.error { background: rgba(239,68,68,0.12); color: var(--color-error); }
+.badge.neutral { background: rgba(107,114,128,0.14); color: var(--color-primary); }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
-}
-
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
+.button {
+  appearance: none;
+  background: var(--color-primary);
+  color: white;
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
+  transition: transform .08s ease, box-shadow .2s ease, opacity .2s ease;
+}
+.button.ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: var(--border);
+}
+.button:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.button:active { transform: translateY(0); }
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.main-area {
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+.content-area {
+  padding: var(--space-8);
 }
