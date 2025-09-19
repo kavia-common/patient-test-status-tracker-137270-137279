@@ -2,8 +2,12 @@ import React from 'react';
 
 /**
  * Topbar provides search and quick action controls.
+ * Props:
+ *  - onToggleTheme: function to toggle theme
+ *  - theme: 'light' | 'dark'
+ *  - onAdd: function invoked when "+ Add" is clicked
  */
-const Topbar = ({ onToggleTheme, theme }) => {
+const Topbar = ({ onToggleTheme, theme, onAdd }) => {
   return (
     <header className="topbar">
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -18,7 +22,13 @@ const Topbar = ({ onToggleTheme, theme }) => {
         <button className="button ghost" onClick={onToggleTheme} aria-label="Toggle theme">
           {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
         </button>
-        <button className="button" aria-label="Add patient">+ Add</button>
+        <button
+          className="button"
+          aria-label="Add patient"
+          onClick={onAdd}
+        >
+          + Add
+        </button>
       </div>
     </header>
   );
